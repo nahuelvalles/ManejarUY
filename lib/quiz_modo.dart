@@ -1,0 +1,4 @@
+enum QuizModo {
+  examenCompleto,
+  examenRapido,
+}

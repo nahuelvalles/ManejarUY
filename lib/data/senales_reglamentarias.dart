@@ -1,0 +1,28 @@
+import 'senal_model.dart';
+
+const List<Senal> senalesReglamentarias = [
+  Senal(asset: 'assets/senales_reglamentarias/1_pare.png', nombre: 'Pare', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/2_ceda_paso.png', nombre: 'Ceda el paso', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/3_prohibido_adelante.png', nombre: 'Prohibido seguir adelante o dirección prohibida', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/4_prohibido_izq.png', nombre: 'Prohibido girar a la izquierda', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/5_prohibido_der.png', nombre: 'Prohibido girar a la derecha', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/6_prohibido_u.png', nombre: 'Prohibido girar en U', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/7_prohibido_estacionar.png', nombre: 'Prohibido estacionar', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/8_estacionamiento_reglamentado.png', nombre: 'Estacionamiento reglamentado', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/9_prohibido_estacionar_detenerse.png', nombre: 'Prohibido estacionar y/o detenerse', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/10_prohibido_traccion_sangre.png', nombre: 'Prohibido el paso de carretas de tracción a sangre', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/11_prohibido_bicicletas.png', nombre: 'Prohibido el paso de bicicletas', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/12_prohibido_agricola.png', nombre: 'Prohibido el paso de maquinaria agrícola', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/13_prohibido_peatones.png', nombre: 'Prohibido el paso de peatones', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/14_altura_maxima.png', nombre: 'Altura máxima permitida', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/15_ancho_maximo.png', nombre: 'Ancho máximo permitido', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/16_derecha_solamente.png', nombre: 'Giro a la derecha solamente', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/17_velocidad_max.png', nombre: 'Velocidad máxima permitida', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/18_conserve_derecha.png', nombre: 'Conserve su derecha', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/19_circulacion_obligatoria.png', nombre: 'Circulación obligatoria', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/20_solamente_izq.png', nombre: 'Giro a la izquierda solamente', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/21_prohibido_adelantar.png', nombre: 'Prohibido adelantar', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/22_contramano.png', nombre: 'Contramano', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/23_prohibido_vehiculo_carga.png', nombre: 'Prohibido el paso de vehículos de carga', tipo: TipoSenal.reglamentaria),
+  Senal(asset: 'assets/senales_reglamentarias/24_prohibido_paso_automotores.png', nombre: 'Prohibido el paso de vehículos automotores', tipo: TipoSenal.reglamentaria),
+];
