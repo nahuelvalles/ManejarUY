@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'quiz_screen.dart';
+import '../quiz_modo.dart';
+//import 'examen_quiz_screen.dart';
 
 class ModulosScreen extends StatelessWidget {
   const ModulosScreen({super.key});

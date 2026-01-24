@@ -41,23 +41,23 @@ class _ManualIndiceScreenState extends State<ManualIndiceScreen> {
   // Categorías sugeridas
   static const _categorias = <ManualCategoria>[
     ManualCategoria(
-      titulo: '📌 Documentación y normativa',
+      titulo: 'Documentación y normativa',
       keys: ['REGLAMENTACIÓN', 'PERMISO', 'CATEGORÍAS'],
     ),
     ManualCategoria(
-      titulo: '🧠 Riesgo, salud y alcohol',
+      titulo: 'Riesgo, salud y alcohol',
       keys: ['FACTORES', 'MEDICINA', 'ALCOHOL'],
     ),
     ManualCategoria(
-      titulo: '🚗 Vehículos y usuarios',
+      titulo: 'Vehículos y usuarios',
       keys: ['SU VEHÍCULO', 'MOTOS', 'BICICLETA', 'CUATRICICLOS', 'PEATÓN'],
     ),
     ManualCategoria(
-      titulo: '🛣️ Conducción y maniobras',
+      titulo: 'Conducción y maniobras',
       keys: ['LA CONDUCCIÓN', 'GENERALIDADES', 'LEYES FÍSICAS', 'MANIOBRAS', 'RUTA'],
     ),
     ManualCategoria(
-      titulo: '🆘 Seguridad, ambiente y anexos',
+      titulo: 'Seguridad, ambiente y anexos',
       keys: ['ACCIDENTE', 'MEDIO AMBIENTE', 'ECOLÓGICA', 'GLOSARIO', 'ANEXO'],
     ),
   ];
@@ -82,7 +82,7 @@ class _ManualIndiceScreenState extends State<ManualIndiceScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Guía Nacional'),
+        title: const Text('Guía Nacional de Conducción'),
       ),
       body: SafeArea(
         child: Column(
@@ -93,12 +93,6 @@ class _ManualIndiceScreenState extends State<ManualIndiceScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    '¿Qué querés leer hoy?',
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
                   const SizedBox(height: 10),
                   _SearchCard(
                     controller: _searchCtrl,
@@ -133,18 +127,10 @@ class _ManualIndiceScreenState extends State<ManualIndiceScreen> {
 
                         // Extra (ver todo) con mismo look
                         _CategoriaCard(
-                          titulo: '📚 Ver todo el índice',
+                          titulo: '📋 Mostrar índice completo...',
                           items: _items,
                           initiallyExpanded: false,
                           onTap: (item) => _openPage(context, item.pagina),
-                        ),
-
-                        const SizedBox(height: 10),
-                        Text(
-                          'Tip: podés buscar por palabras clave (ej: “luces”, “moto”, “peatón”).',
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: cs.onSurface.withOpacity(0.65),
-                          ),
                         ),
                       ],
                     ),
