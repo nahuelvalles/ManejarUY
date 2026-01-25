@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import '../utils/senal_labeler.dart';
 import '../data/senales_todas.dart';
 import '../data/senal_model.dart';
 import '../widgets/cropped_asset_image.dart';
@@ -83,7 +83,8 @@ class _PracticarTodasQuizScreenState extends State<PracticarTodasQuizScreen> {
 
     final images = paths.where((p) {
       final lower = p.toLowerCase();
-      final isImage = lower.endsWith('.png') ||
+      final isImage =
+          lower.endsWith('.png') ||
           lower.endsWith('.jpg') ||
           lower.endsWith('.jpeg') ||
           lower.endsWith('.webp');
@@ -98,29 +99,14 @@ class _PracticarTodasQuizScreenState extends State<PracticarTodasQuizScreen> {
     images.sort();
 
     return images
-        .map<Senal>((asset) => Senal(
-              nombre: _labelFromAssetPath(asset),
-              asset: asset,
-              tipo: _tipoFromAssetPath(asset),
-            ))
+        .map<Senal>(
+          (asset) => Senal(
+            nombre: senalLabelFromAssetPath(asset),
+            asset: asset,
+            tipo: _tipoFromAssetPath(asset),
+          ),
+        )
         .toList();
-  }
-
-  String _labelFromAssetPath(String assetPath) {
-    final file = assetPath.split('/').last;
-
-    // quitar extensión
-    var name = file.replaceAll(RegExp(r'\.[^.]+$'), '');
-
-    // quitar prefijo m_
-    if (name.startsWith('m_')) name = name.substring(2);
-
-    // underscores a espacios
-    name = name.replaceAll('_', ' ').trim();
-
-    // capitalizar primera letra
-    if (name.isEmpty) return name;
-    return name[0].toUpperCase() + name.substring(1);
   }
 
   void _nuevoTurno({bool noSetState = false}) {
@@ -212,9 +198,7 @@ class _PracticarTodasQuizScreenState extends State<PracticarTodasQuizScreen> {
         }
 
         return Scaffold(
-          appBar: AppBar(
-            title: Text('Todas (${_idx + 1}/${_pool.length})'),
-          ),
+          appBar: AppBar(title: Text('Todas (${_idx + 1}/${_pool.length})')),
           body: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -254,8 +238,9 @@ class _PracticarTodasQuizScreenState extends State<PracticarTodasQuizScreen> {
                           width: double.infinity,
                           height: 52,
                           child: ElevatedButton(
-                            style:
-                                ElevatedButton.styleFrom(backgroundColor: bg),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: bg,
+                            ),
                             onPressed: () => _responder(i),
                             child: Text(text, textAlign: TextAlign.center),
                           ),

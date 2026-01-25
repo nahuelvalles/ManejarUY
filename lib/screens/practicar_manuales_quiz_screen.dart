@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import '../data/senal_model.dart';
 import '../widgets/cropped_asset_image.dart';
+import '../utils/senal_labeler.dart';
 
 class PracticarManualesQuizScreen extends StatefulWidget {
   const PracticarManualesQuizScreen({super.key});
@@ -13,7 +14,8 @@ class PracticarManualesQuizScreen extends StatefulWidget {
       _PracticarManualesQuizScreenState();
 }
 
-class _PracticarManualesQuizScreenState extends State<PracticarManualesQuizScreen> {
+class _PracticarManualesQuizScreenState
+    extends State<PracticarManualesQuizScreen> {
   final _rand = Random();
 
   List<Senal> _pool = [];
@@ -38,7 +40,8 @@ class _PracticarManualesQuizScreenState extends State<PracticarManualesQuizScree
 
     final manualesPaths = paths.where((p) {
       final lower = p.toLowerCase();
-      final isImage = lower.endsWith('.png') ||
+      final isImage =
+          lower.endsWith('.png') ||
           lower.endsWith('.jpg') ||
           lower.endsWith('.jpeg') ||
           lower.endsWith('.webp');
@@ -46,28 +49,18 @@ class _PracticarManualesQuizScreenState extends State<PracticarManualesQuizScree
       if (!isImage) return false;
       if (!p.startsWith(manPrefix)) return false;
 
-      // SOLO archivos "m_..."
       final file = p.split('/').last;
       return file.startsWith('m_');
     }).toList();
 
-    // Si no hay nada, dejamos pool vacío
     if (manualesPaths.isEmpty) {
-      setState(() {
-        _pool = [];
-      });
+      setState(() => _pool = []);
       return;
     }
 
     final senales = manualesPaths.map((asset) {
-      final nombre = _labelFromAsset(asset);
-      return Senal(
-        asset: asset,
-        nombre: nombre,
-        // No tenemos TipoSenal.manual en tu enum, así que usamos uno existente.
-        // No afecta la lógica del quiz.
-        tipo: TipoSenal.preventiva,
-      );
+      final nombre = senalLabelFromAssetPath(asset);
+      return Senal(asset: asset, nombre: nombre, tipo: TipoSenal.preventiva);
     }).toList();
 
     senales.shuffle(_rand);
@@ -88,8 +81,6 @@ class _PracticarManualesQuizScreenState extends State<PracticarManualesQuizScree
     _seleccion = null;
 
     final correct = _actual!.nombre;
-
-    // pool de nombres (para incorrectas)
     final nombres = _pool.map((s) => s.nombre).toList();
 
     final incorrectas = <String>{};
@@ -99,7 +90,6 @@ class _PracticarManualesQuizScreenState extends State<PracticarManualesQuizScree
     }
 
     _opciones = [correct, ...incorrectas.toList()]..shuffle(_rand);
-
     setState(() {});
   }
 
@@ -158,7 +148,6 @@ class _PracticarManualesQuizScreenState extends State<PracticarManualesQuizScree
 
   @override
   Widget build(BuildContext context) {
-    // Cargando assets
     if (_pool.isEmpty && _actual == null) {
       return Scaffold(
         appBar: AppBar(title: const Text('Manuales')),
@@ -166,7 +155,6 @@ class _PracticarManualesQuizScreenState extends State<PracticarManualesQuizScree
       );
     }
 
-    // No encontró señales manuales
     if (_pool.isEmpty) {
       return Scaffold(
         appBar: AppBar(title: const Text('Manuales')),
@@ -190,9 +178,7 @@ class _PracticarManualesQuizScreenState extends State<PracticarManualesQuizScree
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Manuales (${_idx + 1}/${_pool.length})'),
-      ),
+      appBar: AppBar(title: Text('Manuales (${_idx + 1}/${_pool.length})')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -204,14 +190,12 @@ class _PracticarManualesQuizScreenState extends State<PracticarManualesQuizScree
                   padding: const EdgeInsets.all(12),
                   child: CroppedAssetImage(
                     assetPath: actual.asset,
-                    // Ajustá este valor si todavía se ve texto
                     cropBottomPercent: 0.40,
                   ),
                 ),
               ),
             ),
             const SizedBox(height: 12),
-
             Expanded(
               flex: 5,
               child: Column(
@@ -243,7 +227,6 @@ class _PracticarManualesQuizScreenState extends State<PracticarManualesQuizScree
                 }),
               ),
             ),
-
             if (_seleccion != null)
               SizedBox(
                 width: double.infinity,
@@ -259,25 +242,5 @@ class _PracticarManualesQuizScreenState extends State<PracticarManualesQuizScree
         ),
       ),
     );
-  }
-
-  /// Convierte:
-  /// assets/senales_manuales/m_detener_totalmente_la_marcha.png
-  /// -> "detener totalmente la marcha"
-  ///
-  /// (si querés, luego lo podemos mejorar para poner mayúsculas/acentos)
-  String _labelFromAsset(String assetPath) {
-    final file = assetPath.split('/').last;
-
-    // sin extensión
-    final noExt = file.replaceAll(RegExp(r'\.(png|jpg|jpeg|webp)$', caseSensitive: false), '');
-
-    // saca el "m_" inicial
-    final base = noExt.startsWith('m_') ? noExt.substring(2) : noExt;
-
-    // underscores -> espacios
-    final withSpaces = base.replaceAll('_', ' ').trim();
-
-    return withSpaces;
   }
 }
