@@ -13,7 +13,9 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^32.1.23
   image: ^4.2.0
   cupertino_icons: ^1.0.8
-
+  package_info_plus: ^8.0.2
+  url_launcher: ^6.2.5
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

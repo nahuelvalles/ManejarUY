@@ -70,8 +70,8 @@ class _ManualIndiceScreenState extends State<ManualIndiceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final cs = theme.colorScheme;
+    //final theme = Theme.of(context);
+    //final cs = theme.colorScheme;
 
     final q = _searchCtrl.text.trim().toLowerCase();
     final isSearching = q.isNotEmpty;

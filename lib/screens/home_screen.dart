@@ -4,6 +4,7 @@ import '../quiz_modo.dart';
 import 'examen_quiz_screen.dart';
 import 'manual_indice_screen.dart';
 import 'senales_screen.dart';
+import 'ajustes_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -35,7 +36,10 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              // TODO: abrir settings cuando lo tengas
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const AjustesScreen()),
+              );
             },
             icon: const Icon(Icons.settings_rounded, color: AppColors.text),
           ),
@@ -71,7 +75,8 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const ExamenQuizScreen(modo: QuizModo.examenCompleto),
+                      builder: (_) =>
+                          const ExamenQuizScreen(modo: QuizModo.examenCompleto),
                     ),
                   );
                 },
@@ -94,7 +99,9 @@ class HomeScreen extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => const ManualIndiceScreen()),
+                    MaterialPageRoute(
+                      builder: (_) => const ManualIndiceScreen(),
+                    ),
                   );
                 },
               ),
@@ -106,7 +113,8 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const ExamenQuizScreen(modo: QuizModo.examenRapido),
+                      builder: (_) =>
+                          const ExamenQuizScreen(modo: QuizModo.examenRapido),
                     ),
                   );
                 },
@@ -147,6 +155,7 @@ class _HomeCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 title,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w800,
