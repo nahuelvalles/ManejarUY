@@ -242,7 +242,7 @@ const List<PreguntaExamen> preguntasExamen = [
       'Hacer cambio de luces',
       'Colocar sus luces cortas',
       'Tirarse a la banquina si el choque es inevitable',
-      'Solo a y c son correctas',
+      'Solo A y C son correctas',
     ],
     respuestaCorrecta: 3,
   ),
